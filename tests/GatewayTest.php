@@ -58,7 +58,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertFalse($response->isRedirect());
         $this->assertNull($response->getMessage());
         $this->assertSame('3244053957', $response->getTransactionReference());
-        $this->assertSame('100', $response->getCode());
+        $this->assertSame(100, $response->getCode());
     }
 
     public function testAuthorizeFailure()
@@ -68,8 +68,8 @@ class GatewayTest extends GatewayTestCase
         
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
-        $this->assertSame('Duplicate transaction REFID:3188339697', $response->getMessage());
-        $this->assertSame('300', $response->getCode());
+        $this->assertSame('Transaction was rejected by gateway.; Duplicate transaction REFID:3188339697', $response->getMessage());
+        $this->assertSame(300, $response->getCode());
     }
 
     public function testPurchaseSuccess()
@@ -81,7 +81,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertFalse($response->isRedirect());
         $this->assertNull($response->getMessage());
         $this->assertSame('3244053957', $response->getTransactionReference());
-        $this->assertSame('100', $response->getCode());
+        $this->assertSame(100, $response->getCode());
     }
 
     public function testPurchaseFailure()
@@ -91,7 +91,7 @@ class GatewayTest extends GatewayTestCase
 
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
-        $this->assertSame('Duplicate transaction REFID:3188339697', $response->getMessage());
-        $this->assertSame('300', $response->getCode());
+        $this->assertSame('Transaction was rejected by gateway.; Duplicate transaction REFID:3188339697', $response->getMessage());
+        $this->assertSame(300, $response->getCode());
     }
 }
