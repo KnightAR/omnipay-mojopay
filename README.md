@@ -36,19 +36,32 @@ This driver supports following transaction types:
 - void($options) - generally can only be called up to 24 hours after submitting a transaction
 
 Gateway instantiation:
+``` PHP
     $gateway = Omnipay::create('Mojopay');
     $gateway->setProcessorId('abcdefg1234567');
     $gateway->setToken('6ef44f261a4a1595cd377d3ca7b57b92');
     $gateway->setTestMode(true);
+```
 
 Driver also supports paying using store cards in the customer vault using `customerHash` instead of `card`, 
-use the vault functions with the `customerHash` parameter. It can be used in authorize, purchase, and refund requests:
+use the vault functions with the `customerHash` parameter.
 
 This driver also supports storing customer data in Mojopay's customer vault:
 
 - vault_create($options) - Create a entry in the customer vault
 - vault_update($options) - Update an entry in the customer vault
 - vault_delete($options) - Delete an entry in a customer vault
+``` PHP
+    $response = $gateway->vault_purchase([
+        'card'        => '10.00',
+        'customerHash'  => '1234567890'
+    ])->send();
+    
+    $customerHash = $response->getCustomerHash();
+```
+
+It can be used in authorize, purchase, and refund requests:
+ 
 - vault_authorize($options) - authorize an amount using customer's card in the vault
 - vault_purchase($options) - authorize and immediately capture an amount using customer's card in the vault
 - vault_refund($options) - refund an already processed transaction using customer's card in the vault
