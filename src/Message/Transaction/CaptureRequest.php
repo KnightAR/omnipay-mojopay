@@ -36,4 +36,3 @@ class CaptureRequest extends AuthorizeRequest
         return $this->response = new CaptureRefunddResponse($this, $data);
     }
 }
-}
