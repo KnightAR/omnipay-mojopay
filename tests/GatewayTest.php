@@ -59,7 +59,7 @@ class GatewayTest extends GatewayTestCase
             "subscriptionStartDay"   => 1,
             "subscriptionStartMonth" => 9,
             "subscriptionStartYear"  => 2016
-        };
+        );
     }
 
     public function testGatewaySettersGetters()
