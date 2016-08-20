@@ -26,40 +26,6 @@ abstract class AbstractRequest extends BaseAbstractRequest
     abstract public function getType();
 
     /**
-     * @return string
-     */
-    public function getTestMode()
-    {
-        return $this->getParameter('testMode');
-    }
-
-    /**
-     * @param string $value
-     * @return $this
-     */
-    public function setTestMode($value)
-    {
-        return $this->setParameter('testMode', $value);
-    }
-
-    /**
-     * @return string
-     */
-    public function getToken()
-    {
-        return $this->getParameter('token');
-    }
-
-    /**
-     * @param string $value
-     * @return $this
-     */
-    public function setToken($value)
-    {
-        return $this->setParameter('token', $value);
-    }
-
-    /**
      * @return $this
      */
     public function getProcessorId()

@@ -43,33 +43,29 @@ Gateway instantiation:
     $gateway->setTestMode(true);
 ```
 
-Driver also supports paying using store cards in the customer vault using `customerHash` instead of `card`, 
-use the vault functions with the `customerHash` parameter.
+Driver also supports paying using store cards in the customer vault using `cardReference` instead of `card`, 
+use the vault functions with the `cardReference` parameter.
 
 This driver also supports storing customer data in Mojopay's customer vault:
 
-- vault_create($options) - Create a entry in the customer vault
-- vault_update($options) - Update an entry in the customer vault
-- vault_delete($options) - Delete an entry in a customer vault
+- createCard($options) - Create a entry in the customer vault
+- updateCard($options) - Update an entry in the customer vault
+- deleteCard($options) - Delete an entry in a customer vault
 ``` PHP
     $formData = array('number' => '4242424242424242', 'expiryMonth' => '8', 'expiryYear' => '2017', 'cvv' => '123');
     
-    $response = $gateway->vault_create([
+    $response = $gateway->createCard([
         'card'        => $formData
     ])->send();
     
-    $customerHash = $response->getCustomerHash();
+    $cardReference = $response->getCardReference();
 ```
 
-`customerHash` can be used in authorize, purchase, and refund requests using the vault functions:
- 
-- vault_authorize($options) - authorize an amount using customer's card in the vault
-- vault_purchase($options) - authorize and immediately capture an amount using customer's card in the vault
-- vault_refund($options) - refund an already processed transaction using customer's card in the vault
+`cardReference` can be used in the authorize, purchase, and refund requests:
 ``` PHP
     $gateway->vault_purchase([
         'amount'        => '10.00',
-        'customerHash'  => '1234567890'
+        'cardReference'  => '1234567890'
     ]);
 ```
 This driver also supports subscription management which can be accessed using:
@@ -79,7 +75,7 @@ This driver also supports subscription management which can be accessed using:
 ``` PHP
     # As an example we will add a subscription the starts on 01/04/2017
     $gateway->subscription_add([
-        'customerHash'           => '1234567890',
+        'cardReference'           => '1234567890',
         'planId'                 => '1234567890',
         'subscriptionStartDay'   => '01',
         'subscriptionStartMonth' => '04',
