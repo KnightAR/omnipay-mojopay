@@ -12,6 +12,6 @@ class SubscriptionAddResponse extends Response
      */
     public function isSuccessful()
     {
-        return isset($this->data->Response) && is_string($this->data->Response) && $this->data->Response === "Subscription successfully added";
+        return isset($this->data->Response) && is_string($this->data->Response) && $this->data->Response === "Subscription created";
     }
 }
