@@ -51,7 +51,7 @@ class AuthorizeRequestTest extends BaseRequestTest
         $this->assertSame('USD', (string)$data['currency']);
 
         $this->assertSame($card->getNumber(), (string)$data['creditCardNumber']);
-        $this->assertSame($card->getExpiryDate('ym'), $data['expirationDate']);
+        $this->assertSame($card->getExpiryDate('my'), $data['expirationDate']);
         $this->assertSame((string)$card->getCvv(), (string)$data['cardSecurityCode']);
     }
 
