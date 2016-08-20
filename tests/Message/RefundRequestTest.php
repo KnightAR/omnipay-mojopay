@@ -5,7 +5,7 @@ namespace Omnipay\Mojopay\Test\Message;
 use Omnipay\Mojopay\Message\Transaction\RefundRequest;
 use Omnipay\Tests\TestCase;
 
-class RefundRequestTest extends TestCase
+class RefundRequestTest extends BaseRequestTest
 {
     /**
      * @var RefundRequest

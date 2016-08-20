@@ -5,7 +5,7 @@ namespace Omnipay\Mojopay\Test\Message;
 use Omnipay\Mojopay\Message\Transaction\CaptureRequest;
 use Omnipay\Tests\TestCase;
 
-class CaptureRequestTest extends TestCase
+class CaptureRequestTest extends BaseRequestTest
 {
     /**
      * @var CaptureRequest

@@ -5,7 +5,7 @@ namespace Omnipay\Mojopay\Test\Message;
 use Omnipay\Mojopay\Message\Transaction\VoidRequest;
 use Omnipay\Tests\TestCase;
 
-class VoidRequestTest extends TestCase
+class VoidRequestTest extends BaseRequestTest
 {
     /**
      * @var VoidRequest
