@@ -59,6 +59,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertNull($response->getMessage());
         $this->assertSame('3244053957', $response->getTransactionReference());
         $this->assertSame(100, $response->getCode());
+        $this->assertNull($response->getTransactionId());
     }
 
     public function testAuthorizeFailure()
@@ -71,6 +72,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('Transaction was rejected by gateway.; Duplicate transaction REFID:3188339697', $response->getMessage());
         $this->assertNull($response->getTransactionReference());
         $this->assertSame(300, $response->getCode());
+        $this->assertNull($response->getTransactionId());
     }
 
     public function testPurchaseSuccess()
@@ -83,6 +85,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertNull($response->getMessage());
         $this->assertSame('3244053957', $response->getTransactionReference());
         $this->assertSame(100, $response->getCode());
+        $this->assertNull($response->getTransactionId());
     }
 
     public function testPurchaseFailure()
@@ -95,6 +98,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('Transaction was rejected by gateway.; Duplicate transaction REFID:3188339697', $response->getMessage());
         $this->assertNull($response->getTransactionReference());
         $this->assertSame(300, $response->getCode());
+        $this->assertNull($response->getTransactionId());
     }
     
     public function testCaptureSuccess()
@@ -107,6 +111,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertNull($response->getMessage());
         $this->assertSame('3244053957', $response->getTransactionReference());
         $this->assertSame(100, $response->getCode());
+        $this->assertNull($response->getTransactionId());
     }
 
     public function testCaptureFailure()
@@ -119,6 +124,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('Transaction was rejected by gateway.; The specified amount of 5.00 exceeds the authorization amount of 1.00 REFID:3188494937', $response->getMessage());
         $this->assertSame('3244053957', $response->getTransactionReference());
         $this->assertSame(300, $response->getCode());
+        $this->assertNull($response->getTransactionId());
     }
 
     public function testRefundSuccess()
@@ -131,6 +137,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertNull($response->getMessage());
         $this->assertSame('3246990413', $response->getTransactionReference());
         $this->assertSame(100, $response->getCode());
+        $this->assertNull($response->getTransactionId());
     }
 
     public function testRefundFailure()
@@ -141,8 +148,9 @@ class GatewayTest extends GatewayTestCase
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertSame('Transaction was rejected by gateway.; Invalid Transaction ID / Object ID specified:  REFID:3188495243', $response->getMessage());
-        $this->assertSame('3246990413', $response->getTransactionReference());
+        $this->assertNull($response->getTransactionReference());
         $this->assertSame(300, $response->getCode());
+        $this->assertNull($response->getTransactionId());
     }
 
     public function testVoidSuccess()
@@ -155,6 +163,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertNull($response->getMessage());
         $this->assertSame('3246978902', $response->getTransactionReference());
         $this->assertSame(100, $response->getCode());
+        $this->assertNull($response->getTransactionId());
     }
 
     public function testVoidFailure()
@@ -167,5 +176,6 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('Transaction was rejected by gateway.; Only transactions pending settlement can be voided REFID:3188494189', $response->getMessage());
         $this->assertSame('3246978902', $response->getTransactionReference());
         $this->assertSame(300, $response->getCode());
+        $this->assertNull($response->getTransactionId());
     }
 }

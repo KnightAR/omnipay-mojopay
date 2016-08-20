@@ -35,20 +35,10 @@ class AuthorizeRequest extends AbstractRequest
         $data['orderId'] = $this->getTransactionId();
         $data['orderDescription'] = $this->getDescription();
         $data['amount'] = $this->getAmount();
-
-        //$transactionDetails->addChild('Reference', $this->getTransactionId());
-        //$amount = $transactionDetails->addChild('Amount', $this->getAmount());
-        //$transactionDetails->addChild('CurrencyCode', $this->getCurrencyNumeric());
-
-        //If this is a Token payment, add the Token data item, otherwise its a normal card purchase.
-        if ($this->getCardReference()) {
-            //$data['CardReference'] = $this->getCardReference();
-            //$data['CardHash'] = $this->getCardHash();
-        } else {
-            $this->setCardCredentials($data);
-            $this->setShippingCredentials($data);
-            $this->setCardHolderCredentials($data);
-        }
+        
+        $this->setCardCredentials($data);
+        $this->setShippingCredentials($data);
+        $this->setCardHolderCredentials($data);
 
         return $data;
     }
@@ -110,22 +100,5 @@ class AuthorizeRequest extends AbstractRequest
         $data['phoneNumberCard'] = $card->getPhone();
         $data['faxNumberCard'] = $card->getBillingFax();
         $data['emailAddressCard'] = $card->getEmail();
-    }
-
-    /**
-     * @return string
-     */
-    public function getCardHash()
-    {
-        return $this->getParameter('cardHash');
-    }
-
-    /**
-     * @param string $value
-     * @return $this
-     */
-    public function setCardHash($value)
-    {
-        return $this->setParameter('cardHash', $value);
     }
 }
