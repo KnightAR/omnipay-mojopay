@@ -166,7 +166,7 @@ class Response extends AbstractResponse
      *
      * @return null|string A response customerHash from the payment gateway
      */
-    public function getCustomerHash()
+    public function getCardReference()
     {
         return ( isset($this->data->Response) && !is_string($this->data->Response) && isset($this->data->Response->customerHash) ) ? (int)$this->data->Response->customerHash : null;
     }

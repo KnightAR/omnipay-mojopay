@@ -62,7 +62,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('3244053957', $response->getTransactionReference());
         $this->assertSame(100, $response->getCode());
         $this->assertNull($response->getTransactionId());
-        $this->assertNull($response->getCustomerHash());
+        $this->assertNull($response->getCardReference());
     }
 
     public function testAuthorizeFailure()
@@ -78,7 +78,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertNull($response->getTransactionReference());
         $this->assertSame(300, $response->getCode());
         $this->assertNull($response->getTransactionId());
-        $this->assertNull($response->getCustomerHash());
+        $this->assertNull($response->getCardReference());
     }
 
     public function testPurchaseSuccess()
@@ -94,7 +94,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('3244053957', $response->getTransactionReference());
         $this->assertSame(100, $response->getCode());
         $this->assertNull($response->getTransactionId());
-        $this->assertNull($response->getCustomerHash());
+        $this->assertNull($response->getCardReference());
     }
 
     public function testPurchaseFailure()
@@ -110,7 +110,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertNull($response->getTransactionReference());
         $this->assertSame(300, $response->getCode());
         $this->assertNull($response->getTransactionId());
-        $this->assertNull($response->getCustomerHash());
+        $this->assertNull($response->getCardReference());
     }
     
     public function testCaptureSuccess()
@@ -126,7 +126,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('3244053957', $response->getTransactionReference());
         $this->assertSame(100, $response->getCode());
         $this->assertNull($response->getTransactionId());
-        $this->assertNull($response->getCustomerHash());
+        $this->assertNull($response->getCardReference());
     }
 
     public function testCaptureFailure()
@@ -142,7 +142,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('3244053957', $response->getTransactionReference());
         $this->assertSame(300, $response->getCode());
         $this->assertNull($response->getTransactionId());
-        $this->assertNull($response->getCustomerHash());
+        $this->assertNull($response->getCardReference());
     }
 
     public function testRefundSuccess()
@@ -158,7 +158,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('3246990413', $response->getTransactionReference());
         $this->assertSame(100, $response->getCode());
         $this->assertNull($response->getTransactionId());
-        $this->assertNull($response->getCustomerHash());
+        $this->assertNull($response->getCardReference());
     }
 
     public function testRefundFailure()
@@ -174,7 +174,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertNull($response->getTransactionReference());
         $this->assertSame(300, $response->getCode());
         $this->assertNull($response->getTransactionId());
-        $this->assertNull($response->getCustomerHash());
+        $this->assertNull($response->getCardReference());
     }
 
     public function testVoidSuccess()
@@ -190,7 +190,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('3246978902', $response->getTransactionReference());
         $this->assertSame(100, $response->getCode());
         $this->assertNull($response->getTransactionId());
-        $this->assertNull($response->getCustomerHash());
+        $this->assertNull($response->getCardReference());
     }
 
     public function testVoidFailure()
@@ -206,6 +206,6 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('3246978902', $response->getTransactionReference());
         $this->assertSame(300, $response->getCode());
         $this->assertNull($response->getTransactionId());
-        $this->assertNull($response->getCustomerHash());
+        $this->assertNull($response->getCardReference());
     }
 }

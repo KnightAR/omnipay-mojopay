@@ -116,7 +116,7 @@ class Gateway extends AbstractGateway
      * @return Message\Vault\VaultCreateRequest
      * Vault Create = auth
      */
-    public function vault_create(array $parameters = array())
+    public function createCard(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\Mojopay\Message\Vault\VaultCreateRequest', $parameters);
     }
@@ -126,7 +126,7 @@ class Gateway extends AbstractGateway
      * @return Message\Vault\VaultDeleteRequest
      * Vault Delete = delete
      */
-    public function vault_delete(array $parameters = array())
+    public function deleteCard(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\Mojopay\Message\Vault\VaultDeleteRequest', $parameters);
     }
@@ -136,39 +136,9 @@ class Gateway extends AbstractGateway
      * @return Message\Vault\VaultUpdateRequest
      * Vault Update = update
      */
-    public function vault_update(array $parameters = array())
+    public function updateCard(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\Mojopay\Message\Vault\VaultUpdateRequest', $parameters);
-    }
-    
-    /**
-     * @param array $parameters
-     * @return Message\Vault\VaultAuthorizeRequest
-     * Authorize = auth
-     */
-    public function vault_authorize(array $parameters = array())
-    {
-        return $this->createRequest('\Omnipay\Mojopay\Message\Vault\VaultAuthorizeRequest', $parameters);
-    }
-    
-    /**
-     * @param array $parameters
-     * @return Message\Vault\VaultPurchaseRequest
-     * Purchase = sale
-     */
-    public function vault_purchase(array $parameters = array())
-    {
-        return $this->createRequest('\Omnipay\Mojopay\Message\Vault\VaultPurchaseRequest', $parameters);
-    }
-    
-    /**
-     * @param array $parameters
-     * @return Message\Vault\VaultRefundRequest
-     * Refund = credit
-     */
-    public function vault_refund(array $parameters = array())
-    {
-        return $this->createRequest('\Omnipay\Mojopay\Message\Vault\VaultRefundRequest', $parameters);
     }
     
     /**

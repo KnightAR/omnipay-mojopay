@@ -2,7 +2,9 @@
 
 namespace Omnipay\Mojopay\Message\Vault;
 
-class VaultCreateRequest extends VaultAuthorizeRequest
+use Omnipay\Mojopay\Message\Transaction\AuthorizeRequest;
+
+class VaultCreateRequest extends AuthorizeRequest
 {
     /**
      * @return string

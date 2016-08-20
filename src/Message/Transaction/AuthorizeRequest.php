@@ -35,10 +35,14 @@ class AuthorizeRequest extends AbstractRequest
         $data['orderId'] = $this->getTransactionId();
         $data['orderDescription'] = $this->getDescription();
         $data['amount'] = $this->getAmount();
-        
-        $this->setCardCredentials($data);
-        $this->setShippingCredentials($data);
-        $this->setCardHolderCredentials($data);
+
+        if ($this->getCardReference()) {
+            $data['customerHash'] = $this->getCardReference();
+        } else {
+            $this->setCardCredentials($data);
+            $this->setShippingCredentials($data);
+            $this->setCardHolderCredentials($data);
+        }
 
         return $data;
     }
@@ -87,9 +91,9 @@ class AuthorizeRequest extends AbstractRequest
     protected function setCardHolderCredentials(Array &$data)
     {
         $card = $this->getCard();
+        
         $data['firstNameCard'] = $card->getFirstName();
         $data['lastNameCard'] = $card->getLastName();
-        
         $data['companyCard'] = $card->getCompany();
         $data['countryCard'] = $card->getCountry();
         $data['addressCard'] = $card->getAddress1();

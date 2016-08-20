@@ -22,36 +22,19 @@ class SubscriptionAddRequest extends AuthorizeRequest
      */
     public function getData()
     {
-        $this->validate('customerHash', 'planId', 'subscriptionStartDay', 'subscriptionStartMonth', 'subscriptionStartYear');
+        $this->validate('cardReference', 'planId', 'subscriptionStartDay', 'subscriptionStartMonth', 'subscriptionStartYear');
         
         $data = $this->getBaseData();
 
         $data['planId'] = $this->getPlanId();
-        $data['customerHash'] = $this->getCustomerHash();
+        $data['customerHash'] = $this->getCardReference();
         $data['startDate'] = $this->getSubscriptionStartDate('Ymd');
         $data['orderId'] = $this->getTransactionId();
         $data['orderDescription'] = $this->getDescription();
         
         return $data;
     }
-    
-    /**
-     * @return string
-     */
-    public function getCustomerHash()
-    {
-        return $this->getParameter('customerHash');
-    }
 
-    /**
-     * @param string $value
-     * @return $this
-     */
-    public function setCustomerHash($value)
-    {
-        return $this->setParameter('customerHash', $value);
-    }
-    
     /**
      * @return string
      */

@@ -24,8 +24,8 @@ class SubscriptionDeleteRequest extends SubscriptionAddRequest
             $this->validate('subscriptionId');
             $data['subscriptionId'] = $this->getSubscriptionId();
         } else {
-            $this->validate('customerHash', 'planId');
-            $data['customerHash'] = $this->getCustomerHash();
+            $this->validate('cardReference', 'planId');
+            $data['customerHash'] = $this->getCardReference();
             $data['planId'] = $this->getPlanId();
         }
         return $data;

@@ -2,9 +2,10 @@
 
 namespace Omnipay\Mojopay\Message\Vault;
 
+use Omnipay\Mojopay\Message\Transaction\AuthorizeRequest;
 use Omnipay\Mojopay\Message\Response\DeleteResponse;
 
-class VaultDeleteRequest extends VaultAuthorizeRequest
+class VaultDeleteRequest extends AuthorizeRequest
 {
     /**
      * @return string
@@ -19,9 +20,9 @@ class VaultDeleteRequest extends VaultAuthorizeRequest
      */
     public function getData()
     {
-        $this->validate('customerHash');
+        $this->validate('cardReference');
         $data = $this->getBaseData();
-        $data['customerHash'] = $this->getCustomerHash();
+        $data['customerHash'] = $this->getCardReference();
         return $data;
     }
     
