@@ -42,6 +42,16 @@ class GatewayTest extends GatewayTestCase
             'amount'        => '10.00',
             'transactionId' => '3244053957',
         );
+        $this->cardCreateReferenceOptions = array(
+             'card' => $this->getValidCard()
+        );
+        $this->cardUpdateReferenceOptions = array(
+             'cardReference' => '1376993339',
+             'card'          => $this->getValidCard()
+        );
+        $this->cardDeleteReferenceOptions = array(
+             'cardReference' => '1376993339'
+        );
     }
 
     public function testGatewaySettersGetters()
@@ -209,5 +219,75 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame(300, $response->getCode());
         $this->assertNull($response->getTransactionId());
         $this->assertNull($response->getCardReference());
+    }
+    
+    public function testCardCreateSuccess()
+    {
+        $this->setMockHttpResponse('CardCreateSuccess.txt');
+        $response = $this->gateway->createCard($this->cardCreateReferenceOptions)->send();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getMessage());
+        $this->assertSame('Transaction was approved.', $response->getCodeText());
+        $this->assertSame('SUCCESS', $response->getResponseText());
+        $this->assertSame('3247070784', $response->getTransactionReference());
+        $this->assertSame(100, $response->getCode());
+        $this->assertNull($response->getTransactionId());
+        $this->assertSame('1376993339', $response->getCardReference());
+    }
+    
+    public function testCardDeleteSuccess()
+    {
+        $this->setMockHttpResponse('CardDeleteSuccess.txt');
+        $response = $this->gateway->deleteCard($this->cardDeleteReferenceOptions)->send();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getMessage());
+        $this->assertNull($response->getCodeText());
+        $this->assertNull($response->getResponseText());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertNull($response->getCode());
+        $this->assertNull($response->getTransactionId());
+        $this->assertNull($response->getCardReference());
+        
+        $responseData = $response->getData();
+        $this->assertSame(true, $response->Response);
+    }    
+    
+    public function testCardUpdateFailure()
+    {
+        $this->setMockHttpResponse('CardUpdateFailure.txt');
+        $response = $this->gateway->update($this->cardUpdateReferenceOptions)->send();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertSame("Customer Hash missing", $response->getMessage());
+        $this->assertNull($response->getCodeText());
+        $this->assertNull($response->getResponseText());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertNull($response->getCode());
+        $this->assertNull($response->getTransactionId());
+        $this->assertNull($response->getCardReference());
+        
+        $responseData = $response->getData();
+        $this->assertSame("Customer Hash missing", $response->Response);
+    }
+    
+    public function testCardUpdateSuccess()
+    {
+        $this->setMockHttpResponse('CardUpdateSuccess.txt');
+        $response = $this->gateway->createCard($this->cardUpdateReferenceOptions)->send();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getMessage());
+        $this->assertSame('Transaction was approved.', $response->getCodeText());
+        $this->assertSame('Customer Update Successful', $response->getResponseText());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertSame(100, $response->getCode());
+        $this->assertNull($response->getTransactionId());
+        $this->assertSame('1376993339', $response->getCardReference());
     }
 }
