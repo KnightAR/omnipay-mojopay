@@ -6,6 +6,8 @@ use Omnipay\Mojopay\Message\Transaction\PurchaseRequest;
 
 class PurchaseRequestTest extends AuthorizeRequestTest
 {
+    protected $expectedType = 'sale';
+    
     public function setUp()
     {
         parent::setUp();

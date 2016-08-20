@@ -8,6 +8,8 @@ use Omnipay\Tests\TestCase;
 
 class AuthorizeRequestTest extends BaseRequestTest
 {
+    protected $expectedType = 'auth';
+    
     /**
      * @return array
      */
@@ -33,7 +35,7 @@ class AuthorizeRequestTest extends BaseRequestTest
     {
         $data = $this->request->getData();
 
-        $this->assertSame('auth', (string)$data['type']);
+        $this->assertSame($this->expectedType, (string)$data['type']);
         $this->assertSame('6ef44f261a4a1595cd377d3ca7b57b92', (string)$data['token']);
         $this->assertSame('abcdefg1234567', (string)$data['processorId']);
     }
@@ -48,7 +50,7 @@ class AuthorizeRequestTest extends BaseRequestTest
         $this->assertSame('12.00', (string)$data['amount']);
         $this->assertSame('USD', (string)$data['currency']);
 
-        $this->assertSame($card->getNumber(), (string)$data['number']);
+        $this->assertSame($card->getNumber(), (string)$data['creditCardNumber']);
         $this->assertSame($card->getExpiryDate('ym'), $date['expirationDate']);
         $this->assertSame((string)$card->getCvv(), (string)$data['cardSecurityCode']);
     }
