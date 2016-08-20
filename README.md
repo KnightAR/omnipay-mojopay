@@ -2,11 +2,11 @@
 
 **Mojopay gateway for the Omnipay PHP payment processing library**
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/KnightAR/omnipay-mojopay.svg?style=flat-square)](https://packagist.org/packages/KnightAR/omnipay-mojopay)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/KnightAR/omnipay-mojopay/master.svg?style=flat-square)](https://travis-ci.org/KnightAR/omnipay-mojopay)
-[![Total Downloads](https://img.shields.io/packagist/dt/KnightAR/omnipay-mojopay.svg?style=flat-square)](https://packagist.org/packages/KnightAR/omnipay-mojopay)
-
+[![Latest Stable Version](https://poser.pugx.org/knightar/omnipay-mojopay/v/stable)](https://packagist.org/packages/knightar/omnipay-mojopay) 
+[![Latest Unstable Version](https://poser.pugx.org/knightar/omnipay-mojopay/v/unstable)](https://packagist.org/packages/knightar/omnipay-mojopay) 
+[![License](https://poser.pugx.org/knightar/omnipay-mojopay/license)](https://packagist.org/packages/knightar/omnipay-mojopay) 
+[![Build Status](https://img.shields.io/travis/KnightAR/omnipay-mojopay/master.svg?style=flat-square)](https://travis-ci.org/KnightAR/omnipay-mojopay) 
+[![Total Downloads](https://poser.pugx.org/knightar/omnipay-mojopay/downloads)](https://packagist.org/packages/knightar/omnipay-mojopay)
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP 5.3+. This package implements Mojopay support for Omnipay.
