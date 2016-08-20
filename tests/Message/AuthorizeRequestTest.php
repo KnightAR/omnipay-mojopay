@@ -90,7 +90,7 @@ class AuthorizeRequestTest extends TestCase
         $this->assertSame((string)$card->getCity(), (string)$data['cityCard']);
         $this->assertSame((string)$card->getState(), (string)$data['stateProvinceCard']);
         $this->assertSame((string)$card->getPostcode(), (string)$data['zipPostalCodeCard']);
-        $this->assertSame((string)$card->getShippgetPhoneingPhone(), (string)$data['phoneNumberCard']);
+        $this->assertSame((string)$card->getPhone(), (string)$data['phoneNumberCard']);
         $this->assertSame((string)$card->getBillingFax(), (string)$data['faxNumberCard']);
         $this->assertSame((string)$card->getEmail(), (string)$data['emailAddressCard']);
     }
