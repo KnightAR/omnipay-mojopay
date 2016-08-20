@@ -6,7 +6,7 @@ use Omnipay\Common\CreditCard;
 use Omnipay\Mojopay\Message\Transaction\AuthorizeRequest;
 use Omnipay\Tests\TestCase;
 
-class abstract BaseRequestTest extends TestCase
+abstract class BaseRequestTest extends TestCase
 {
     /**
      * @var AuthorizeRequest
