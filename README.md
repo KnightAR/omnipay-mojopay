@@ -52,24 +52,52 @@ This driver also supports storing customer data in Mojopay's customer vault:
 - vault_update($options) - Update an entry in the customer vault
 - vault_delete($options) - Delete an entry in a customer vault
 ``` PHP
-    $response = $gateway->vault_purchase([
-        'card'        => '10.00',
-        'customerHash'  => '1234567890'
+    $formData = array('number' => '4242424242424242', 'expiryMonth' => '8', 'expiryYear' => '2017', 'cvv' => '123');
+    
+    $response = $gateway->vault_create([
+        'card'        => $formData
     ])->send();
     
     $customerHash = $response->getCustomerHash();
 ```
 
-It can be used in authorize, purchase, and refund requests:
+`customerHash` can be used in authorize, purchase, and refund requests using the vault functions:
  
 - vault_authorize($options) - authorize an amount using customer's card in the vault
 - vault_purchase($options) - authorize and immediately capture an amount using customer's card in the vault
 - vault_refund($options) - refund an already processed transaction using customer's card in the vault
-
+``` PHP
     $gateway->vault_purchase([
         'amount'        => '10.00',
         'customerHash'  => '1234567890'
     ]);
+```
+This driver also supports subscription management which can be accessed using:
+ 
+- subscription_add($options) - Add a subscription
+- subscription_delete($options) - Delete a subscription
+``` PHP
+    # As an example we will add a subscription the starts on 01/04/2017
+    $gateway->subscription_add([
+        'customerHash'           => '1234567890',
+        'planId'                 => '1234567890',
+        'subscriptionStartDay'   => '01',
+        'subscriptionStartMonth' => '04',
+        'subscriptionStartYear'  => '2017'
+    ]);
+```
+
+This driver currently does not support the following (Todo):
+
+- Adding, updating, removing, listing Recurring Plans
+- Listing subscriptions by customer
+- Add a Customer to the Vault while Initiating a Sale/Authorization/Credit/Validate Transaction
+- Listing customer vault records
+
+We currently have no plans to implement the following calls (Pull requests are accepted for those who wants to add them):
+
+- Adding a custom subscription - Does not return necessary subscription ID to cancel
+- Adding a customer and subscription - Does not return necessary subscription ID to cancel
 
 ## Support
 
