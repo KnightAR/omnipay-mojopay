@@ -8,6 +8,9 @@ php:
   - 7.0
   - hhvm
 
+install:
+  - composer require satooshi/php-coveralls
+
 matrix:
   allow_failures:
     - php: 5.3
@@ -18,9 +21,10 @@ matrix:
 before_script:
   - travis_retry composer self-update
   - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
+  - travis_retry mkdir -p build/logs
 
 script:
-  - phpunit --coverage-text --coverage-clover=coverage.clover
+  - phpunit --coverage-text --coverage-clover = build/logs/clover.xml
 
-after_script:
-  - php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover
+after_success:
+  - sh -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then php vendor/bin/coveralls -v; fi;'
