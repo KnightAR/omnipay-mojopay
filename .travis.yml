@@ -10,10 +10,12 @@ php:
 
 matrix:
   allow_failures:
+    - php: 5.3
+    - php: 5.4
     - php: 7.0
   include:
     - php: 5.4
-      env: 'COMPOSER_FLAGS="--prefer-stable --prefer-lowest"'
+      env: 'COMPOSER_FLAGS="--prefer-stable"'
 
 before_script:
   - travis_retry composer self-update
