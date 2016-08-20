@@ -90,7 +90,7 @@ class Response extends AbstractResponse
      */
     public function getTransactionId()
     {
-        return isset($this->data->Response->orderid) && !empty($this->data->Response->transactionid) ?
+        return isset($this->data->Response->orderid) && !empty($this->data->Response->orderid) ?
             (string)$this->data->Response->orderid : null;
     }
 
