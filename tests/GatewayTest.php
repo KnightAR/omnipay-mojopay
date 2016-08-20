@@ -325,7 +325,7 @@ class GatewayTest extends GatewayTestCase
 
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
-        $this->assertNull($response->getMessage());
+        $this->assertNull("Subscription created", $response->getMessage());
         $this->assertNull($response->getCodeText());
         $this->assertNull($response->getResponseText());
         $this->assertNull($response->getTransactionReference());
