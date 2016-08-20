@@ -57,7 +57,8 @@ class GatewayTest extends GatewayTestCase
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertNull($response->getMessage());
-        $this->assertNull($response->getCodeText());
+        $this->assertSame('Transaction was approved.', $response->getCodeText());
+        $this->assertSame('SUCCESS', $response->getResponseText());
         $this->assertSame('3244053957', $response->getTransactionReference());
         $this->assertSame(100, $response->getCode());
         $this->assertNull($response->getTransactionId());
@@ -86,7 +87,8 @@ class GatewayTest extends GatewayTestCase
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertNull($response->getMessage());
-        $this->assertNull($response->getCodeText());
+        $this->assertSame('Transaction was approved.', $response->getCodeText());
+        $this->assertSame('SUCCESS', $response->getResponseText());
         $this->assertSame('3244053957', $response->getTransactionReference());
         $this->assertSame(100, $response->getCode());
         $this->assertNull($response->getTransactionId());
@@ -115,7 +117,8 @@ class GatewayTest extends GatewayTestCase
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertNull($response->getMessage());
-        $this->assertNull($response->getCodeText());
+        $this->assertSame('Transaction was approved.', $response->getCodeText());
+        $this->assertSame('SUCCESS', $response->getResponseText());
         $this->assertSame('3244053957', $response->getTransactionReference());
         $this->assertSame(100, $response->getCode());
         $this->assertNull($response->getTransactionId());
@@ -144,7 +147,8 @@ class GatewayTest extends GatewayTestCase
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertNull($response->getMessage());
-        $this->assertNull($response->getCodeText());
+        $this->assertSame('Transaction was approved.', $response->getCodeText());
+        $this->assertSame('SUCCESS', $response->getResponseText());
         $this->assertSame('3246990413', $response->getTransactionReference());
         $this->assertSame(100, $response->getCode());
         $this->assertNull($response->getTransactionId());
@@ -173,7 +177,8 @@ class GatewayTest extends GatewayTestCase
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertNull($response->getMessage());
-        $this->assertNull($response->getCodeText());
+        $this->assertSame('Transaction was approved.', $response->getCodeText());
+        $this->assertSame('Transaction Void Successful', $response->getResponseText());
         $this->assertSame('3246978902', $response->getTransactionReference());
         $this->assertSame(100, $response->getCode());
         $this->assertNull($response->getTransactionId());
