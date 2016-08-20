@@ -138,7 +138,7 @@ class SubscriptionAddRequest extends AuthorizeRequest
      */
     public function setSubscriptionStartYear($value)
     {
-        return $this->setYearParameter('subscriptionStartYear', $value);
+        return $this->setParameter('subscriptionStartYear', $value);
     }
     
     /**

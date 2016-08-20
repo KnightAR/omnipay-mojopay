@@ -52,6 +52,14 @@ class GatewayTest extends GatewayTestCase
         $this->cardDeleteReferenceOptions = array(
              'cardReference' => '1376993339'
         );
+        
+        $this->subscriptionAdd = array(
+            "cardReference"          => "3247070784",
+            "planId"                 => "1804286062",
+            "subscriptionStartDay"   => 1,
+            "subscriptionStartMonth" => 9,
+            "subscriptionStartYear"  => 2016
+        };
     }
 
     public function testGatewaySettersGetters()
@@ -289,5 +297,43 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame(100, $response->getCode());
         $this->assertNull($response->getTransactionId());
         $this->assertSame('1376993339', $response->getCardReference());
+    }
+    
+    public function testSubscriptionAddFailure()
+    {
+        $this->setMockHttpResponse('SubscriptionAddFailure.txt');
+        $response = $this->gateway->subscription_add($this->subscriptionAdd)->send();
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertSame("Customer Token does not exist", $response->getMessage());
+        $this->assertNull($response->getCodeText());
+        $this->assertNull($response->getResponseText());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertNull($response->getCode());
+        $this->assertNull($response->getTransactionId());
+        $this->assertNull($response->getCardReference());
+        
+        $responseData = $response->getData();
+        $this->assertSame("Customer Token does not exist", $responseData->Response);
+    }
+            
+    public function testSubscriptionAddSuccess()
+    {
+        $this->setMockHttpResponse('SubscriptionAddSuccess.txt');
+        $response = $this->gateway->subscription_add($this->subscriptionAdd)->send();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getMessage());
+        $this->assertNull($response->getCodeText());
+        $this->assertNull($response->getResponseText());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertNull($response->getCode());
+        $this->assertNull($response->getTransactionId());
+        $this->assertNull($response->getCardReference());
+        
+        $responseData = $response->getData();
+        $this->assertSame("Subscription created", $responseData->Response);
     }
 }
