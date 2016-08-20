@@ -17,10 +17,10 @@ class RefundRequestTest extends TestCase
         parent::setUp();
 
         $this->request = new RefundRequest($this->getHttpClient(), $this->getHttpRequest());
-        $this->request->initialize(array(
+        $this->request->initialize(array_merge($this->getBaseOptions(), array(
             'amount'        => '12.00',
             'transactionId' => '3244053957',
-        ));
+        )));
     }
 
     public function testGetData()

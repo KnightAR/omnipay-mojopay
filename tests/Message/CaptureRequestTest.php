@@ -17,9 +17,10 @@ class CaptureRequestTest extends TestCase
         parent::setUp();
 
         $this->request = new CaptureRequest($this->getHttpClient(), $this->getHttpRequest());
-        $this->request->initialize(array(
+        $this->request->initialize(array_merge($this->getBaseOptions(), array(
             'transactionId' => '3244053957',
-        ));
+            'amount'        => '12.00',
+        )));
     }
 
     public function testGetData()
@@ -27,5 +28,6 @@ class CaptureRequestTest extends TestCase
         $data = $this->request->getData();
 
         $this->assertSame('3244053957', (string)$data['transactionId']);
+        $this->assertSame('12.00', (string)$data['amount']);
     }
 }

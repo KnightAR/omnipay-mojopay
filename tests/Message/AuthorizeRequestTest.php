@@ -16,17 +16,26 @@ class AuthorizeRequestTest extends TestCase
     /**
      * @return array
      */
-    protected function getOptions()
+    protected function getBaseOptions()
     {
         return array(
             'processorId'    => 'abcdefg1234567',
             'token'          => '6ef44f261a4a1595cd377d3ca7b57b92',
             'testMode'       => true,
+        );
+    }
+    
+    /**
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return array_merge($this->getBaseOptions(), array(
             'amount'         => '12.00',
             'currency'       => 'USD',
             'transactionId'  => '123',
             'card'           => $this->getValidCard()
-        );
+        ));
     }
 
     public function setUp()
@@ -54,7 +63,6 @@ class AuthorizeRequestTest extends TestCase
 
         $this->assertSame('123', (string)$data['orderId']);
         $this->assertSame('12.00', (string)$data['amount']);
-        $this->assertSame('1376993339', (string)$data['customerHash']);
         $this->assertSame('USD', (string)$data['currency']);
 
         $this->assertSame($card->getNumber(), (string)$data['number']);

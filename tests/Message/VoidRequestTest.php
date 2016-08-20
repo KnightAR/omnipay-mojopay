@@ -17,9 +17,9 @@ class VoidRequestTest extends TestCase
         parent::setUp();
 
         $this->request = new VoidRequest($this->getHttpClient(), $this->getHttpRequest());
-        $this->request->initialize(array(
+        $this->request->initialize(array_merge($this->getBaseOptions(), array(
             'transactionId'        => '3244053957',
-        ));
+        )));
     }
 
     public function testGetData()
