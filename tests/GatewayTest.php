@@ -259,7 +259,7 @@ class GatewayTest extends GatewayTestCase
     public function testCardUpdateFailure()
     {
         $this->setMockHttpResponse('CardUpdateFailure.txt');
-        $response = $this->gateway->update($this->cardUpdateReferenceOptions)->send();
+        $response = $this->gateway->updateCard($this->cardUpdateReferenceOptions)->send();
 
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
@@ -278,7 +278,7 @@ class GatewayTest extends GatewayTestCase
     public function testCardUpdateSuccess()
     {
         $this->setMockHttpResponse('CardUpdateSuccess.txt');
-        $response = $this->gateway->createCard($this->cardUpdateReferenceOptions)->send();
+        $response = $this->gateway->updateCard($this->cardUpdateReferenceOptions)->send();
 
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
