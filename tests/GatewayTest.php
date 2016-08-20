@@ -52,13 +52,17 @@ class GatewayTest extends GatewayTestCase
         $this->cardDeleteReferenceOptions = array(
              'cardReference' => '1376993339'
         );
-        
         $this->subscriptionAdd = array(
             "cardReference"          => "3247070784",
             "planId"                 => "1804286062",
             "subscriptionStartDay"   => 1,
             "subscriptionStartMonth" => 9,
             "subscriptionStartYear"  => 2016
+        );
+        $this->purchaseOptionsRef = array(
+            'amount'        => '10.00',
+            'orderId'       => '123',
+            'cardReference' => '2108887363',
         );
     }
 
@@ -84,7 +88,23 @@ class GatewayTest extends GatewayTestCase
         $this->assertNull($response->getTransactionId());
         $this->assertNull($response->getCardReference());
     }
-
+    
+    public function testAuthorizeByRefSuccess()
+    {
+        $this->setMockHttpResponse('AuthorizeByRefSuccess.txt');
+        $response = $this->gateway->authorize($this->purchaseOptionsRef)->send();
+        
+        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getMessage());
+        $this->assertSame('Transaction was approved.', $response->getCodeText());
+        $this->assertSame('SUCCESS', $response->getResponseText());
+        $this->assertSame('3247216792', $response->getTransactionReference());
+        $this->assertSame(100, $response->getCode());
+        $this->assertNull($response->getTransactionId());
+        $this->assertSame('2108887363', $response->getCardReference());
+    }
+    
     public function testAuthorizeFailure()
     {
         $this->setMockHttpResponse('AuthorizeFailure.txt');
@@ -322,7 +342,8 @@ class GatewayTest extends GatewayTestCase
     {
         $this->setMockHttpResponse('SubscriptionAddSuccess.txt');
         $response = $this->gateway->subscription_add($this->subscriptionAdd)->send();
-
+        
+        $this->assertSame("20160901", $response->getRequest()->getSubscriptionStartDate('Ymd'));
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertSame("Subscription created", $response->getMessage());

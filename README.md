@@ -85,6 +85,7 @@ This driver also supports subscription management which can be accessed using:
 
 This driver currently does not support the following (Todo):
 
+- Credit API call
 - Adding, updating, removing, listing Recurring Plans
 - Listing subscriptions by customer
 - Add a Customer to the Vault while Initiating a Sale/Authorization/Credit/Validate Transaction

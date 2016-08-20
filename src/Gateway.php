@@ -86,7 +86,7 @@ class Gateway extends AbstractGateway
     /**
      * @param array $parameters
      * @return Message\Transaction\RefundRequest
-     * Refund = credit
+     * Refund = refund
      */
     public function refund(array $parameters = array())
     {
