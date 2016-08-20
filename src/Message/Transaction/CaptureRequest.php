@@ -26,13 +26,4 @@ class CaptureRequest extends AuthorizeRequest
 
         return $data;
     }
-
-    /**
-     * @param string $data
-     * @return Response
-     */
-    protected function createResponse($data)
-    {
-        return $this->response = new CaptureRefunddResponse($this, $data);
-    }
 }

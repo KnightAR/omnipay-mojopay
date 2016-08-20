@@ -69,6 +69,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertSame('Transaction was rejected by gateway.; Duplicate transaction REFID:3188339697', $response->getMessage());
+        $this->assertNull($response->getTransactionReference());
         $this->assertSame(300, $response->getCode());
     }
 
@@ -92,6 +93,79 @@ class GatewayTest extends GatewayTestCase
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertSame('Transaction was rejected by gateway.; Duplicate transaction REFID:3188339697', $response->getMessage());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertSame(300, $response->getCode());
+    }
+    
+    public function testCaptureSuccess()
+    {
+        $this->setMockHttpResponse('CaptureSuccess.txt');
+        $response = $this->gateway->capture($this->captureOptions)->send();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getMessage());
+        $this->assertSame('3244053957', $response->getTransactionReference());
+        $this->assertSame(100, $response->getCode());
+    }
+
+    public function testCaptureFailure()
+    {
+        $this->setMockHttpResponse('CaptureFailure.txt');
+        $response = $this->gateway->capture($this->captureOptions)->send();
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertSame('Transaction was rejected by gateway.; The specified amount of 5.00 exceeds the authorization amount of 1.00 REFID:3188494937', $response->getMessage());
+        $this->assertSame('3244053957', $response->getTransactionReference());
+        $this->assertSame(300, $response->getCode());
+    }
+
+    public function testRefundSuccess()
+    {
+        $this->setMockHttpResponse('RefundSuccess.txt');
+        $response = $this->gateway->refund($this->captureOptions)->send();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getMessage());
+        $this->assertSame('3246990413', $response->getTransactionReference());
+        $this->assertSame(100, $response->getCode());
+    }
+
+    public function testRefundFailure()
+    {
+        $this->setMockHttpResponse('RefundFailure.txt');
+        $response = $this->gateway->refund($this->captureOptions)->send();
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertSame('Transaction was rejected by gateway.; Invalid Transaction ID / Object ID specified:  REFID:3188495243', $response->getMessage());
+        $this->assertSame('3246990413', $response->getTransactionReference());
+        $this->assertSame(300, $response->getCode());
+    }
+
+    public function testVoidSuccess()
+    {
+        $this->setMockHttpResponse('VoidSuccess.txt');
+        $response = $this->gateway->void($this->captureOptions)->send();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getMessage());
+        $this->assertSame('3246978902', $response->getTransactionReference());
+        $this->assertSame(100, $response->getCode());
+    }
+
+    public function testVoidFailure()
+    {
+        $this->setMockHttpResponse('VoidFailure.txt');
+        $response = $this->gateway->void($this->captureOptions)->send();
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertSame('Transaction was rejected by gateway.; Only transactions pending settlement can be voided REFID:3188494189', $response->getMessage());
+        $this->assertSame('3246978902', $response->getTransactionReference());
         $this->assertSame(300, $response->getCode());
     }
 }
