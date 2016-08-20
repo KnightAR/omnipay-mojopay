@@ -31,6 +31,7 @@ class GatewayTest extends GatewayTestCase
 
         $this->gateway->setProcessorId('abcdefg1234567');
         $this->gateway->setToken('6ef44f261a4a1595cd377d3ca7b57b92');
+        $this->gateway->setTestMode(true);        
 
         $this->purchaseOptions = array(
             'amount'    => '10.00',
@@ -47,6 +48,7 @@ class GatewayTest extends GatewayTestCase
     {
         $this->assertSame('abcdefg1234567', $this->gateway->getProcessorId());
         $this->assertSame('6ef44f261a4a1595cd377d3ca7b57b92', $this->gateway->getToken());
+        $this->assertSame(true, $this->gateway->getTestMode());
     }
 
     public function testAuthorizeSuccess()

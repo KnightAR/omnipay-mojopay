@@ -34,15 +34,6 @@ abstract class AbstractRequest extends BaseAbstractRequest
     }
 
     /**
-     * @param string $value
-     * @return $this
-     */
-    public function setProcessorId($value)
-    {
-        return $this->setParameter('processorId', $value);
-    }
-
-    /**
      * @return Array
      */
     public function getBaseData()
