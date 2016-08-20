@@ -28,7 +28,24 @@ class Gateway extends AbstractGateway
             'testMode'       => false
         );
     }
-    
+
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->getParameter('token');
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function setToken($value)
+    {
+        return $this->setParameter('token', $value);
+    }
+
     /**
      * @return $this
      */
