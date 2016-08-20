@@ -317,7 +317,7 @@ class GatewayTest extends GatewayTestCase
         $responseData = $response->getData();
         $this->assertSame("Customer Token does not exist", $responseData->Response);
     }
-            
+    
     public function testSubscriptionAddSuccess()
     {
         $this->setMockHttpResponse('SubscriptionAddSuccess.txt');
@@ -335,5 +335,43 @@ class GatewayTest extends GatewayTestCase
         
         $responseData = $response->getData();
         $this->assertSame("Subscription created", $responseData->Response);
+    }
+    
+    public function testSubscriptionDeleteSuccess()
+    {
+        $this->setMockHttpResponse('SubscriptionDeleteSuccess.txt');
+        $response = $this->gateway->subscription_delete($this->subscriptionAdd)->send();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertSame("Subscription successfully deleted", $response->getMessage());
+        $this->assertNull($response->getCodeText());
+        $this->assertNull($response->getResponseText());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertNull($response->getCode());
+        $this->assertNull($response->getTransactionId());
+        $this->assertNull($response->getCardReference());
+        
+        $responseData = $response->getData();
+        $this->assertSame("Subscription successfully deleted", $responseData->Response);
+    }
+    
+    public function testSubscriptionDeleteFailure()
+    {
+        $this->setMockHttpResponse('SubscriptionDeleteFailure.txt');
+        $response = $this->gateway->subscription_delete($this->subscriptionAdd)->send();
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertSame("Could not find a subscription with those parameters.", $response->getMessage());
+        $this->assertNull($response->getCodeText());
+        $this->assertNull($response->getResponseText());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertNull($response->getCode());
+        $this->assertNull($response->getTransactionId());
+        $this->assertNull($response->getCardReference());
+        
+        $responseData = $response->getData();
+        $this->assertSame("Could not find a subscription with those parameters.", $responseData->Response);
     }
 }
