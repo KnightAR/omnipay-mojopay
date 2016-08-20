@@ -16,7 +16,7 @@ processing library for PHP 5.3+. This package implements Mojopay support for Omn
 Via Composer
 
 ``` bash
-$ composer require meebio/omnipay-mojopay
+$ composer require knightar/omnipay-mojopay
 ```
 
 ## Usage
