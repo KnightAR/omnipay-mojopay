@@ -272,7 +272,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertNull($response->getCardReference());
         
         $responseData = $response->getData();
-        $this->assertSame("Customer Hash missing", $response->Response);
+        $this->assertSame("Customer Hash missing", $responseData->Response);
     }
     
     public function testCardUpdateSuccess()
