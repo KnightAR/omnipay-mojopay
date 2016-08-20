@@ -82,6 +82,16 @@ class Gateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\Mojopay\Message\Transaction\PurchaseRequest', $parameters);
     }
+    
+    /**
+     * @param array $parameters
+     * @return Message\Transaction\CreditRequest
+     * Credit = credit
+     */
+    public function credit(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Mojopay\Message\Transaction\CreditRequest', $parameters);
+    }
 
     /**
      * @param array $parameters

@@ -120,7 +120,23 @@ class GatewayTest extends GatewayTestCase
         $this->assertNull($response->getTransactionId());
         $this->assertNull($response->getCardReference());
     }
-
+    
+    public function testCreditFailureNotEnabled()
+    {
+        $this->setMockHttpResponse('CreditFailureNotEnabled.txt');
+        $response = $this->gateway->credit($this->purchaseOptions)->send();
+        
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertSame('Transaction was rejected by gateway.; Credits are not enabled REFID:3188565408', $response->getMessage());
+        $this->assertSame('Credits are not enabled REFID:3188565408', $response->getResponseText());
+        $this->assertSame('Transaction was rejected by gateway.', $response->getCodeText());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertSame(300, $response->getCode());
+        $this->assertNull($response->getTransactionId());
+        $this->assertNull($response->getCardReference());
+    }
+    
     public function testPurchaseSuccess()
     {
         $this->setMockHttpResponse('AuthorizeSuccess.txt');
