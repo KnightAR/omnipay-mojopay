@@ -3,7 +3,7 @@
 namespace Omnipay\Mojopay\Message;
 
 use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
-use Omnipay\Mojopay\Message\Response\TransactionResponse;
+use Omnipay\Mojopay\Message\Response\Response;
 
 /**
  * Abstract Request
@@ -81,6 +81,6 @@ abstract class AbstractRequest extends BaseAbstractRequest
      */
     protected function createResponse($data)
     {
-        return $this->response = new TransactionResponse($this, $data);
+        return $this->response = new Response($this, $data);
     }
 }
