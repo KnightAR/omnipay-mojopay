@@ -253,7 +253,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertNull($response->getCardReference());
         
         $responseData = $response->getData();
-        $this->assertSame(true, $response->Response);
+        $this->assertSame(true, $responseData->Response);
     }    
     
     public function testCardUpdateFailure()
@@ -261,7 +261,7 @@ class GatewayTest extends GatewayTestCase
         $this->setMockHttpResponse('CardUpdateFailure.txt');
         $response = $this->gateway->updateCard($this->cardUpdateReferenceOptions)->send();
 
-        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertSame("Customer Hash missing", $response->getMessage());
         $this->assertNull($response->getCodeText());

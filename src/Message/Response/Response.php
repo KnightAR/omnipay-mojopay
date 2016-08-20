@@ -168,6 +168,6 @@ class Response extends AbstractResponse
      */
     public function getCardReference()
     {
-        return ( isset($this->data->Response) && !is_string($this->data->Response) && isset($this->data->Response->customerHash) ) ? (int)$this->data->Response->customerHash : null;
+        return ( isset($this->data->Response) && !is_string($this->data->Response) && isset($this->data->Response->customer_hash) ) ? (int)$this->data->Response->customer_hash : null;
     }
 }
