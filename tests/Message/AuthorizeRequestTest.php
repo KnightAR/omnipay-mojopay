@@ -3,7 +3,7 @@
 namespace Omnipay\Mojopay\Test\Message;
 
 use Omnipay\Common\CreditCard;
-use Omnipay\Mojopay\Message\AuthorizeRequest;
+use Omnipay\Mojopay\Message\Transaction\AuthorizeRequest;
 use Omnipay\Tests\TestCase;
 
 class AuthorizeRequestTest extends TestCase

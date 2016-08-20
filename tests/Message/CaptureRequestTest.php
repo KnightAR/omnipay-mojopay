@@ -2,7 +2,7 @@
 
 namespace Omnipay\Mojopay\Test\Message;
 
-use Omnipay\Mojopay\Message\CaptureRequest;
+use Omnipay\Mojopay\Message\Transaction\CaptureRequest;
 use Omnipay\Tests\TestCase;
 
 class CaptureRequestTest extends TestCase

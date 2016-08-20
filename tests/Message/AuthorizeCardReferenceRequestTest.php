@@ -2,7 +2,7 @@
 
 namespace Omnipay\Mojopay\Test\Message;
 
-use Omnipay\Mojopay\Message\AuthorizeRequest;
+use Omnipay\Mojopay\Message\Transaction\AuthorizeRequest;
 
 class AuthorizeCardReferenceRequestTest extends AuthorizeRequestTest
 {

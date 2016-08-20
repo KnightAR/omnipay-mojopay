@@ -2,7 +2,7 @@
 
 namespace Omnipay\Mojopay\Test\Message;
 
-use Omnipay\Mojopay\Message\VoidRequest;
+use Omnipay\Mojopay\Message\Transaction\VoidRequest;
 use Omnipay\Tests\TestCase;
 
 class VoidRequestTest extends TestCase

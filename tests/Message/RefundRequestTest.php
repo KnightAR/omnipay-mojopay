@@ -2,7 +2,7 @@
 
 namespace Omnipay\Mojopay\Test\Message;
 
-use Omnipay\Mojopay\Message\RefundRequest;
+use Omnipay\Mojopay\Message\Transaction\RefundRequest;
 use Omnipay\Tests\TestCase;
 
 class RefundRequestTest extends TestCase
