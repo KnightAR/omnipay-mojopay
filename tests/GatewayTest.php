@@ -4,6 +4,8 @@ namespace Omnipay\Mojopay\Test;
 
 use Omnipay\Mojopay\Gateway;
 use Omnipay\Tests\GatewayTestCase;
+use Omnipay\Mojopay\Message\Response\VaultCustomerListRecordsResponse;
+use Omnipay\Mojopay\Message\Response\VaultCustomerRecordResponse;
 
 class GatewayTest extends GatewayTestCase
 {
@@ -410,5 +412,26 @@ class GatewayTest extends GatewayTestCase
         
         $responseData = $response->getData();
         $this->assertSame("Could not find a subscription with those parameters.", $responseData->Response);
+    }
+    
+    public function testVaultCustomerListSuccess()
+    {
+        $this->setMockHttpResponse('VaultCustomerListSuccess.txt');
+        $response = $this->gateway->listCards(array('lastName' => 'Lis'))->send();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getMessage());
+        $this->assertNull($response->getCodeText());
+        $this->assertNull($response->getResponseText());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertNull($response->getCode());
+        $this->assertNull($response->getTransactionId());
+        $this->assertNull($response->getCardReference());
+        
+        $data = $response->getResponse();
+        foreach($data as $row) {
+            $this->assertInstanceOf(\Omnipay\Mojopay\Message\Response\VaultCustomerRecordResponse::class, $row);
+        }
     }
 }

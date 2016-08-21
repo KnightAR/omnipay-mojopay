@@ -26,7 +26,7 @@ class RefundRequestTest extends BaseRequestTest
     public function testGetData()
     {
         $data = $this->request->getData();
-
+        $this->assertSame('refund', (string)$data['type']);
         $this->assertSame('3244053957', (string)$data['transactionId']);
         $this->assertSame('12.00', (string)$data['amount']);
     }

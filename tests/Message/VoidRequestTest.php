@@ -25,7 +25,7 @@ class VoidRequestTest extends BaseRequestTest
     public function testGetData()
     {
         $data = $this->request->getData();
-
+        $this->assertSame('void', (string)$data['type']);
         $this->assertSame('3244053957', (string)$data['transactionId']);
     }
 }

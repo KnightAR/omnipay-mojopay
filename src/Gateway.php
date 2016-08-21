@@ -135,6 +135,16 @@ class Gateway extends AbstractGateway
     
     /**
      * @param array $parameters
+     * @return Message\Vault\VaultCustomerListRecordsRequest
+     * Vault List = list_customer
+     */
+    public function listCards(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Mojopay\Message\Vault\VaultCustomerListRecordsRequest', $parameters);
+    }
+    
+    /**
+     * @param array $parameters
      * @return Message\Transaction\CaptureRequest
      * Capture = capture
      */

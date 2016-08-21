@@ -63,7 +63,7 @@ This driver also supports storing customer data in Mojopay's customer vault:
 
 `cardReference` can be used in the authorize, purchase, and refund requests:
 ``` PHP
-    $gateway->vault_purchase([
+    $gateway->purchase([
         'amount'        => '10.00',
         'cardReference'  => '1234567890'
     ]);
@@ -83,18 +83,33 @@ This driver also supports subscription management which can be accessed using:
     ]);
 ```
 
+This driver also supports the following:
+
+- listCards - Listing customer vault records by criteria
+``` PHP
+    # Each criteria are optional, leaving no criteria will retrieve all customer records
+    $response = $gateway->listCards([
+        'customerHash'  => '', # The hash to identify the customer in the vault
+        'firstName'     => '', # Portion of cardholder's first name.
+        'lastName'      => '', # Portion of cardholder's last name.
+        'email'         => '', # Portion of billing email address.
+        'last4cc'       => ''  # Last 4 digits of credit card number.
+    ]);
+    $response_rows = $response->getResponse();
+```
+
 This driver currently does not support the following (Todo):
 
-- Credit API call
 - Adding, updating, removing, listing Recurring Plans
 - Listing subscriptions by customer
 - Add a Customer to the Vault while Initiating a Sale/Authorization/Credit/Validate Transaction
-- Listing customer vault records
 
 We currently have no plans to implement the following calls (Pull requests are accepted for those who wants to add them):
 
 - Adding a custom subscription - Does not return necessary subscription ID to cancel
 - Adding a customer and subscription - Does not return necessary subscription ID to cancel
+
+Note: Credit API call is implemented but is untested due to unable to test on the staging server.
 
 ## Support
 
