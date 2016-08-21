@@ -436,4 +436,21 @@ class GatewayTest extends GatewayTestCase
             $this->assertTrue($row->isSuccessful());
         }
     }
+    
+    public function testVaultCustomerListFailure()
+    {
+        $this->setMockHttpResponse('VaultCustomerListFailure.txt');
+        $response = $this->gateway->listCards(array('lastName' => 'Lis'))->send();
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getMessage());
+        $this->assertNull($response->getCodeText());
+        $this->assertNull($response->getResponseText());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertNull($response->getCode());
+        $this->assertNull($response->getTransactionId());
+        $this->assertNull($response->getCardReference());
+        $this->assertNull($response->getResponse());
+    }
 }
