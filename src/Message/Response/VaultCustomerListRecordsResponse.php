@@ -41,7 +41,6 @@ class VaultCustomerListRecordsResponse extends Response
             }
             return $output;
         }
-        return null;
     }
     
     /**
