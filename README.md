@@ -89,7 +89,7 @@ This driver also supports the following:
 ``` PHP
     # Each criteria are optional, leaving no criteria will retrieve all customer records
     $response = $gateway->listCards([
-        'customerHash'  => '', # The hash to identify the customer in the vault
+        'cardReference' => '', # The hash to identify the customer in the vault
         'firstName'     => '', # Portion of cardholder's first name.
         'lastName'      => '', # Portion of cardholder's last name.
         'email'         => '', # Portion of billing email address.
