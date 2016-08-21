@@ -87,7 +87,7 @@ This driver also supports the following:
 
 - listCards - Listing customer vault records by criteria
 ``` PHP
-    # Each criteria are optional, leaving no criteria will retrieve all customer records
+    # Each criteria are optional, no criteria will return no records
     $response = $gateway->listCards([
         'cardReference' => '', # The hash to identify the customer in the vault
         'firstName'     => '', # Portion of cardholder's first name.
