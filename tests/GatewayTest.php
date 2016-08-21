@@ -431,7 +431,7 @@ class GatewayTest extends GatewayTestCase
         
         $data = $response->getResponse();
         foreach($data as $row) {
-            $this->assertInstanceOf(\Omnipay\Mojopay\Message\Response\VaultCustomerRecordResponse::class, $row);
+            $this->assertInstanceOf(VaultCustomerRecordResponse, $row);
         }
     }
 }
