@@ -430,12 +430,10 @@ class GatewayTest extends GatewayTestCase
         $this->assertNull($response->getCardReference());
         $this->assertInternalType('array', $response->getResponse());
         
-        if (version_compare(phpversion(), '5.5', '<')) {
-            $data = $response->getResponse();
-            foreach($data as $row) {
-                $this->assertInstanceOf(\Omnipay\Mojopay\Message\Response\VaultCustomerRecordResponse::class, $row);
-                $this->assertTrue($row->isSuccessful());
-            }
+        $data = $response->getResponse();
+        foreach($data as $row) {
+            $this->assertInstanceOf('Omnipay\Mojopay\Message\Response\VaultCustomerRecordResponse', $row);
+            $this->assertTrue($row->isSuccessful());
         }
     }
 }
