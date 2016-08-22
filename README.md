@@ -109,7 +109,8 @@ We currently have no plans to implement the following calls (Pull requests are a
 - Adding a custom subscription - Does not return necessary subscription ID to cancel
 - Adding a customer and subscription - Does not return necessary subscription ID to cancel
 
-Note: Credit API call is implemented but is untested due to unable to test on the staging server.
+Note: Credit API call is implemented but is not enabled by default on merchant accounts,
+      contact Mojopay if you need this functionality. Please note that this code is untested.
 
 ## Support
 
@@ -121,7 +122,7 @@ If you want to keep up to date with release anouncements, discuss ideas for the 
 or ask more detailed questions, there is also a [mailing list](https://groups.google.com/forum/#!forum/omnipay) which
 you can subscribe to.
 
-If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/meebio/omnipay-creditcall/issues),
+If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/knightar/omnipay-mojopay/issues),
 or better yet, fork the library and submit a pull request.
 
 ## Change log
