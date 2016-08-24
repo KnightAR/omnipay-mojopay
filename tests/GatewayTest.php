@@ -41,8 +41,8 @@ class GatewayTest extends GatewayTestCase
             'card'      => $this->getValidCard(),
         );
         $this->captureOptions  = array(
-            'amount'        => '10.00',
-            'transactionId' => '3244053957',
+            'amount'               => '10.00',
+            'transactionReference' => '3244053957',
         );
         $this->cardCreateReferenceOptions = array(
              'card' => $this->getValidCard()

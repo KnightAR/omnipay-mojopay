@@ -18,8 +18,8 @@ class RefundRequestTest extends BaseRequestTest
 
         $this->request = new RefundRequest($this->getHttpClient(), $this->getHttpRequest());
         $this->request->initialize(array_merge($this->getBaseOptions(), array(
-            'amount'        => '12.00',
-            'transactionId' => '3244053957',
+            'amount'               => '12.00',
+            'transactionReference' => '3244053957',
         )));
     }
 

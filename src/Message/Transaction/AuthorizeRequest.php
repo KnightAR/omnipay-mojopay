@@ -57,6 +57,10 @@ class AuthorizeRequest extends AbstractRequest
         $card = $this->getCard();
 
         $card->validate();
+        
+        if (!$card->getPostcode()) {
+            throw new InvalidCreditCardException("The postcode parameter is required");
+        }
 
         $data['creditCardNumber'] = $card->getNumber();
         $data['expirationDate'] = $card->getExpiryDate('my');

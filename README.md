@@ -55,36 +55,11 @@ This driver also supports storing customer data in Mojopay's customer vault:
     $formData = array('number' => '4242424242424242', 'expiryMonth' => '8', 'expiryYear' => '2017', 'cvv' => '123');
     
     $response = $gateway->createCard([
-        'card'        => $formData
+        'card'          => $formData
     ])->send();
     
     $cardReference = $response->getCardReference();
 ```
-
-`cardReference` can be used in the authorize, purchase, and refund requests:
-``` PHP
-    $gateway->purchase([
-        'amount'        => '10.00',
-        'cardReference'  => '1234567890'
-    ]);
-```
-This driver also supports subscription management which can be accessed using:
- 
-- subscription_add($options) - Add a subscription
-- subscription_delete($options) - Delete a subscription
-``` PHP
-    # As an example we will add a subscription the starts on 01/04/2017
-    $gateway->subscription_add([
-        'cardReference'           => '1234567890',
-        'planId'                 => '1234567890',
-        'subscriptionStartDay'   => '01',
-        'subscriptionStartMonth' => '04',
-        'subscriptionStartYear'  => '2017'
-    ]);
-```
-
-This driver also supports the following:
-
 - listCards - Listing customer vault records by criteria
 ``` PHP
     # Each criteria are optional, no criteria will return no records
@@ -98,7 +73,29 @@ This driver also supports the following:
     $response_rows = $response->getResponse();
 ```
 
-This driver currently does not support the following (Todo):
+`cardReference` can be used in the authorize, purchase, and refund requests:
+``` PHP
+    $gateway->purchase([
+        'amount'        => '10.00',
+        'cardReference' => '1234567890'
+    ]);
+```
+This driver also supports subscription management which can be accessed using:
+ 
+- subscription_add($options) - Add a subscription
+- subscription_delete($options) - Delete a subscription
+``` PHP
+    # As an example we will add a subscription the starts on 01/04/2017
+    $gateway->subscription_add([
+        'cardReference'          => '1234567890',
+        'planId'                 => '1234567890',
+        'subscriptionStartDay'   => '01',
+        'subscriptionStartMonth' => '04',
+        'subscriptionStartYear'  => '2017'
+    ]);
+```
+
+API Calls on the TODO list which will be implemented eventually: 
 
 - Adding, updating, removing, listing Recurring Plans
 - Listing subscriptions by customer
