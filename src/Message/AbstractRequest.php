@@ -13,7 +13,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
     /**
      * @var string
      */
-    protected $liveEndpoint = 'https://core.mojopay.com:80/merchantapi';
+    protected $liveEndpoint = 'https://core.mojopay.com/merchantapi';
 
     /**
      * @var string
