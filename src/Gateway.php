@@ -3,12 +3,32 @@
 namespace Omnipay\Mojopay;
 
 use Omnipay\Common\AbstractGateway;
+use Guzzle\Http\Client as HttpClient;
 
 /**
  * Mojopay Gateway
  */
 class Gateway extends AbstractGateway
 {
+    /**
+     * Get the global default HTTP client.
+     *
+     * @return HttpClient
+     */
+    protected function getDefaultHttpClient()
+    {
+        return new HttpClient(
+            '',
+            array(
+                'curl.options' => array(
+                    CURLOPT_CONNECTTIMEOUT => 60,
+                    CURLOPT_SSL_VERIFYPEER => false,
+                    CURLOPT_SSL_VERIFYHOST => false,
+                ),
+            )
+        );
+    }
+    
     /**
      * @return string
      */
